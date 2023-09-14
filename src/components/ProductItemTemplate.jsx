@@ -1,12 +1,12 @@
 import { Button } from "primereact/button";
 import { Rating } from "primereact/rating";
 import { Tag } from "primereact/tag";
+import { useCartStore } from "../hooks";
 
 export const ProductItemTemplate = (product) => {
 
-    const onAddProduct = (product) => {
-        console.log(product)
-    }
+    const { setAddItemEvent } = useCartStore();
+
     return (
         <div className="col-12">
             <div className="flex flex-column xl:flex-row xl:align-items-start p-4 gap-4">
@@ -33,7 +33,7 @@ export const ProductItemTemplate = (product) => {
                             icon="pi pi-shopping-cart"
                             className="p-button-rounded"
                             disabled={product.inventoryStatus === "OUTOFSTOCK"}
-                            onClick={() => onAddProduct(product)}
+                            onClick={() => setAddItemEvent(product)}
                         ></Button>
                     </div>
                 </div>
