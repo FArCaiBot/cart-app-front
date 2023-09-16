@@ -4,9 +4,11 @@ import { DataTable } from "primereact/datatable";
 import { useCartStore } from "../hooks";
 import { Row } from "primereact/row";
 import { ColumnGroup } from "primereact/columngroup";
+import { useNavigate } from "react-router-dom";
 export const CartView = () => {
   const { total, orders, setDeleteItemEvent, setQuantityEvent } =
     useCartStore();
+  const navigate = useNavigate();
 
   const onDeleteItemTemplate = (rowData) => {
     return (
@@ -59,7 +61,7 @@ export const CartView = () => {
     <ColumnGroup>
       <Row>
         <Column footer="Total:" colSpan={3} style={{ textAlign: "right" }} />
-        <Column footer={total} />
+        <Column footer={total} colSpan={2} />
       </Row>
     </ColumnGroup>
   );
@@ -82,6 +84,15 @@ export const CartView = () => {
         <Column field="total" header="TOTAL"></Column>
         <Column headerStyle={{ width: "10%" }} body={onDeleteItemTemplate} />
       </DataTable>
+      <Button
+        label="Seguir comprando"
+        severity="info"
+        text
+        aria-label="Holla"
+        icon="pi pi-arrow-left"
+        className="mt-2"
+        onClick={() => navigate("/catalog")}
+      />
     </div>
   );
 };
