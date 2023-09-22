@@ -20,7 +20,7 @@ export const useCartStore = () => {
   return {
     // propiedades
     orders,
-    total: orders.reduce((a, b) => a + b.total, 0),
+    total: orders.reduce((a, b) => a + b.total, 0).toFixed(2),
     //metodos
     setAddItemEvent,
     setDeleteItemEvent,

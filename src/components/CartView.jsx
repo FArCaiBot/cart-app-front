@@ -61,7 +61,7 @@ export const CartView = () => {
     <ColumnGroup>
       <Row>
         <Column footer="Total:" colSpan={3} style={{ textAlign: "right" }} />
-        <Column footer={total} colSpan={2} />
+        <Column footer={`$ ${total}`} align={"right"} />
       </Row>
     </ColumnGroup>
   );
@@ -74,14 +74,14 @@ export const CartView = () => {
         tableStyle={{ width: "50rem" }}
         footerColumnGroup={totalPriceTemplate}
       >
-        <Column field="product.name" header="NOMBRE"></Column>
+        <Column field="product.title" header="NOMBRE"></Column>
         <Column field="product.price" header="PRECIO" sortable></Column>
         <Column
           field="quantity"
           header="CANTIDAD"
           body={quantityBodyTemplate}
         ></Column>
-        <Column field="total" header="TOTAL"></Column>
+        <Column field="total" header="TOTAL" align={"right"}></Column>
         <Column headerStyle={{ width: "10%" }} body={onDeleteItemTemplate} />
       </DataTable>
       <Button

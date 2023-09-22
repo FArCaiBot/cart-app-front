@@ -1,5 +1,15 @@
 import { productos } from "../data/products";
 
-export const getProducts = () => {
-  return productos;
+export const getProducts =async () => {
+  try {
+    const response = await fetch("https://fakestoreapi.com/products");
+    if (!response.ok) {
+      console.error("Error al cargar daatos");
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+  return;
 };

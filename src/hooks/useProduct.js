@@ -2,17 +2,19 @@ import { useEffect, useState } from "react";
 import { getProducts } from "../services";
 
 export function useGetProducts() {
-    const [productList, setProductList] = useState([]);
-    const [loading, setLoading] = useState(true);
+  const [productList, setProductList] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-    const listarProductos = async () => {
-        setLoading(true);
-        await setProductList(getProducts());
-        setLoading(false)
-    }
+  const listarProductos = async () => {
+    setLoading(true);
+    const result = await getProducts();
+    setProductList(result);
+    setLoading(false);
+  };
 
-    useEffect(() => { listarProductos() }, [])
+  useEffect(() => {
+    listarProductos();
+  }, []);
 
-    return { loading, productList }
-
+  return { loading, productList };
 }
